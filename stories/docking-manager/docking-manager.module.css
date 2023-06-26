@@ -1,0 +1,12 @@
+.root {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+.absolutePane {
+  boxsizing: border-box;
+  position: absolute;
+  border: 1px solid #7009;
+  overflow: hidden;
+}

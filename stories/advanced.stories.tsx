@@ -6,22 +6,23 @@ import { useState } from "react";
 import { Allotment } from "../src";
 import styles from "./advanced.stories.module.css";
 import { App, Document, DOCUMENTS } from "./components";
+import { DockingManager as DM } from "./docking-manager";
 
 export default {
   title: "Advanced",
   Component: Allotment,
-  argTypes: {
-    activityBar: {
-      control: { type: "boolean" },
-    },
-    primarySideBar: {
-      control: { type: "boolean" },
-    },
-    primarySideBarPosition: {
-      options: ["left", "right"],
-      control: { type: "radio" },
-    },
-  },
+  // argTypes: {
+  //   activityBar: {
+  //     control: { type: "boolean" },
+  //   },
+  //   primarySideBar: {
+  //     control: { type: "boolean" },
+  //   },
+  //   primarySideBarPosition: {
+  //     options: ["left", "right"],
+  //     control: { type: "radio" },
+  //   },
+  // },
 } as Meta;
 
 export const VisualStudioCode: Story = ({
@@ -61,3 +62,13 @@ VisualStudioCode.args = {
   primarySideBarPosition: "left",
   secondarySideBar: true,
 };
+
+export const DockingManager: Story = () => {
+  return (
+    <div className={styles.container}>
+      <DM />
+    </div>
+  );
+};
+
+DockingManager.args = {};
