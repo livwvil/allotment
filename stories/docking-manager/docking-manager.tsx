@@ -1,9 +1,9 @@
-import { type FC, useLayoutEffect, useRef, useState } from "react";
+import { type FC, useRef } from "react";
 
 import { AbsolutePane } from "./absolute-pane";
 import styles from "./docking-manager.module.css";
 import { Placeholder } from "./placeholder";
-import type { AllotmentNode, PaneRect, PaneRectMap } from "./tree";
+import type { AllotmentNode, PaneNode, PaneRect, PaneRectMap } from "./tree";
 import { Tree } from "./tree";
 
 const tree: AllotmentNode = {
@@ -89,7 +89,7 @@ const tree: AllotmentNode = {
                           name: "placeholder",
                         },
                       },
-                      ...[...Array(1).keys()].map((k) => ({
+                      ...[...Array(1).keys()].map<PaneNode>((k) => ({
                         id: `pane-node-2-2-2-${k + 5}`,
                         child: {
                           type: "component",
@@ -106,7 +106,7 @@ const tree: AllotmentNode = {
                     name: "placeholder",
                   },
                 },
-                ...[...Array(0).keys()].map((k) => ({
+                ...[...Array(0).keys()].map<PaneNode>((k) => ({
                   id: `pane-node-2-2-${k + 4}`,
                   child: {
                     type: "component",
