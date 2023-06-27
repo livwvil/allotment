@@ -207,19 +207,13 @@ export const DockingManager: FC<DockingManagerProps> = () => {
 
   // TODO: clean removed elements
   const tmpRectsRef = useRef<PaneRectMap>(new Map());
-  const [rects, setRects] = useState<PaneRectMap>(new Map());
 
-  // Workaround, it sets complete Map and only the last one when deep tree multiple invokation.
   const updatePositions = (positions: PaneRectMap) => {
     positions.forEach((position, paneId) => {
       tmpRectsRef.current.set(paneId, position); // upsert
     });
 
-    setRects(new Map(tmpRectsRef.current)); // sets and causes rerender only once
-  };
-
-  useLayoutEffect(() => {
-    const extendedRects = calculateLayout(rects);
+    const extendedRects = calculateLayout(tmpRectsRef.current);
 
     extendedRects.forEach(({ id, absoluteX, absoluteY, width, height }) => {
       const elem = absolutePaneElementsRef.current.get(id);
@@ -234,7 +228,7 @@ export const DockingManager: FC<DockingManagerProps> = () => {
       elem.style.height = `${height}px`;
       elem.style.display = width * height === 0 ? "none" : "block";
     });
-  }, [rects]);
+  };
 
   return (
     <div className={styles.root}>
